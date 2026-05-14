@@ -29,7 +29,7 @@ regd_users.post("/login", (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   let accessToken = jwt.sign({ data: password }, 'access', { expiresIn: 60 * 60 });
   req.session.authorization = { accessToken, username };
-  return res.status(200).json({ message: "User successfully logged in", accessToken });
+  return res.status(200).json({ message: "Login successful!", accessToken }); // ✅ corrigido
 });
 
 // Task 9 — Add/Update review (authenticated)
@@ -59,3 +59,5 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
 });
 
 module.exports.authenticated = regd_users;
+module.exports.isValid = isValid;
+module.exports.users = users;
